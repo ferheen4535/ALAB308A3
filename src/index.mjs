@@ -8,6 +8,7 @@ async function getUserData(id) {
     db3: db3
   };
 
+
 // try {
 //            //first task: find the user this id belongs to//
 // const userLocation = await central(id);
@@ -22,28 +23,38 @@ async function getUserData(id) {
 
 // }
 try {
-// find out which database the user with this id belongs to
-const userLocation = await central(id);
-// call the db function corresponding to the users id
-const basicUserInfo = await dbs[userLocation](id)
-//• call-the vault function to grab the remaining user data
-const personalUserInfo = await vault(id);
-//- return the formatted data 
+  // Find out which database the user with this ID belongs to
+  const userLocation = await central(id);
+  // Call the db function corresponding to the user's ID
+  const basicUserInfo = await dbs[userLocation](id);
+  // Call the vault function to grab the remaining user data
+  const personalUserInfo = await vault(id);
 
-const userData = {
-id, 
-... basicUserinfo, 
-personalUserInfo
+  // Return the formatted data
+  const userData = {
+    id,
+    ...basicUserInfo,
+    ...personalUserInfo
+  };
+  console.log(userData);
+  return userData;
+} catch (error) {
+  console.error("Oh no! The number does not correspond to this database:", error);
 }
-return console.log(userData)
-} catch {
-
-console. log("Oh no! The number does not correspond to this database")
-
-}
 }
 
-getUserData(11)
+getUserData(1);
+getUserData(2);
+getUserData(3);
+getUserData(4);
+getUserData(5);
+getUserData(6);
+getUserData(7);
+getUserData(8);
+getUserData(9);
+getUserData(10);
+getUserData(12);
+
 
 // same as
 // .then()
